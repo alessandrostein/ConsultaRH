@@ -3,6 +3,13 @@ package br.org.catolicasc.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CandidatoHistorico {
 
 	private int id;
@@ -10,8 +17,15 @@ public class CandidatoHistorico {
 	private float reumeracao;
 	private int cidade_id;
 	private int atividade_id;
+	
+	@XmlJavaTypeAdapter(AdaptadorDate.class)
 	private Date dataAdmisao;
+	
+	@XmlJavaTypeAdapter(AdaptadorDate.class)
 	private Date dataDemisao;
+
+	@XmlElementWrapper(name = "cursos")
+	@XmlElement(name = "curso")
 	private List<Curso> cursos;
 
 	public CandidatoHistorico() {

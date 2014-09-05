@@ -1,5 +1,13 @@
 package br.org.catolicasc.model;
 
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Candidato {
 
 	private int id;
@@ -9,6 +17,10 @@ public class Candidato {
 	private float pretencaoSalarial;
 	private CandidatoStatusEnum status;
 	private String autoAvaliacao;
+	
+	@XmlElementWrapper(name = "historicos")
+	@XmlElement(name = "historico")
+	private List<CandidatoHistorico> historico;
 
 	public Candidato() {
 		super();
@@ -17,7 +29,7 @@ public class Candidato {
 	public Candidato(int id, String nome,
 			CandidatoEscolaridadeEnum escolaridade, int idade,
 			float pretencaoSalarial, CandidatoStatusEnum status,
-			String autoAvaliacao) {
+			String autoAvaliacao, List<CandidatoHistorico> historico) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -26,6 +38,7 @@ public class Candidato {
 		this.pretencaoSalarial = pretencaoSalarial;
 		this.status = status;
 		this.autoAvaliacao = autoAvaliacao;
+		this.historico = historico;
 	}
 
 	public int getId() {
@@ -82,6 +95,14 @@ public class Candidato {
 
 	public void setAutoAvaliacao(String autoAvaliacao) {
 		this.autoAvaliacao = autoAvaliacao;
+	}
+
+	public List<CandidatoHistorico> getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(List<CandidatoHistorico> historico) {
+		this.historico = historico;
 	}
 
 }
